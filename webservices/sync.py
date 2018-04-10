@@ -54,7 +54,7 @@ def provider_for_django(provider):
             django_key = 'HTTP_%s' % key.upper().replace('-', '_')
             return request.META.get(django_key, default)
         method = request.method
-        if getattr(request, 'body', None):
+        if hasattr(request, 'body'):
             signed_data = request.body
         else:
             signed_data = request.raw_post_data
